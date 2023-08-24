@@ -21,7 +21,7 @@ def main():
     
     ## export to Excel
     ## do not include index number to xls
-    ciscodf.to_excel("combined_ciscodata.xls", index=False)
+    #ciscodf.to_excel("combined_ciscodata.xls", index=False)
     ## do not include index number to xlsx
     ciscodf.to_excel("combined_ciscodata.xlsx", index=False)
     
