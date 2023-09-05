@@ -23,9 +23,9 @@ class Party:
             self.long_rests += 1
             self.short_rests = 2
             self.camp_supplies -= 40
-            print("You take a Long Rest. All short rests are replenished.")
+            print("\nYou take a Long Rest. All short rests are replenished.")
         else:
-            print("You don't have enough Camp Supplies for a Long Rest.")
+            print("\nYou don't have enough Camp Supplies for a Long Rest.")
 
     def take_short_rest(self):
         """Take a short rest if the party has any left"""
@@ -63,7 +63,8 @@ def main():
         print("4. Show Status")
         print("5. Exit")
 
-        choice = input("Enter your choice (1/2/3/4/5): ")
+        choice = input("\nEnter your choice (1/2/3/4/5): ")
+        time.sleep(0.5)
 
         if choice == '1':
             party.take_long_rest()
@@ -74,11 +75,11 @@ def main():
         elif choice == '4':
             party.show_status()
         elif choice == '5':
-            print("Thank you for playing, this sim will exit in 3 seconds.\n")
+            print("\nThank you for playing, this sim will exit in 3 seconds.\n")
             time.sleep(3)
             break
         else:
-            print("Invalid choice. Please choose a valid option.")
+            print("\nInvalid choice. Please choose a valid option.")
 
 if __name__ == "__main__":
     main()
