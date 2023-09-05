@@ -10,12 +10,14 @@
 import random
 
 class Party:
+    """Create a Party class that will hold attributes"""
     def __init__(self):
         self.camp_supplies = 0
         self.short_rests = 2
         self.long_rests = 0
 
     def take_long_rest(self):
+        """Take a short rest if the party has more than 40 camp supplies."""
         if self.camp_supplies >= 40:
             self.long_rests += 1
             self.short_rests = 2
@@ -25,27 +27,31 @@ class Party:
             print("You don't have enough Camp Supplies for a Long Rest.")
 
     def take_short_rest(self):
+        """Take a short rest if the party has any left"""
         if self.short_rests > 0:
             self.short_rests -= 1
-            print("You take a Short Rest.")
+            print("\nYou take a Short Rest.")
         else:
-            print("You've run out of Short Rests. Consider a Long Rest.")
+            print("\nYou've run out of Short Rests. Consider a Long Rest.")
 
     def forage_supplies(self):
+        """Try to forage for supplies"""
         roll = random.randint(1, 20)
         if roll >= 10:
             supplies_found = random.randint(1, 10)
             self.camp_supplies += supplies_found
-            print(f"You successfully foraged {supplies_found} Camp Supplies.")
+            print(f"\nYou successfully foraged {supplies_found} Camp Supplies.")
         else:
-            print("You couldn't find any additional Camp Supplies while foraging.")
+            print("\nYou couldn't find any additional Camp Supplies while foraging.")
 
     def show_status(self):
-        print(f"Camp Supplies: {self.camp_supplies}")
+        """Let the user check the party resources"""
+        print(f"\nCamp Supplies: {self.camp_supplies}")
         print(f"Short Rests left: {self.short_rests}")
         print(f"Long Rests taken: {self.long_rests}")
 
 def main():
+    """Main function, which calls the Party class"""
     party = Party()
 
     while True:
