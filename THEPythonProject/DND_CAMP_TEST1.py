@@ -8,6 +8,7 @@
     Option to gracefully exit the script (without using CTRL+C)"""
 
 import random
+import time
 
 class Party:
     """Create a Party class that will hold attributes"""
@@ -73,7 +74,8 @@ def main():
         elif choice == '4':
             party.show_status()
         elif choice == '5':
-            print("Exiting the script.")
+            print("Thank you for playing, this sim will exit in 3 seconds.\n")
+            time.sleep(3)
             break
         else:
             print("Invalid choice. Please choose a valid option.")
