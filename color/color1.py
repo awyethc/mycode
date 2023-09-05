@@ -28,4 +28,3 @@ print(crayons.magenta('magenta string', bold=True))
 
 # print 'white string' in white
 print(crayons.white('white string', bold=True))
-
