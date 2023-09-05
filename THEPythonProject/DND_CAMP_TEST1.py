@@ -10,40 +10,41 @@
 import random
 
 class Party: """Define the class we're working from, the Party perspective."""
-    def __init__(self):
-        self.camp_supplies = 0
+
+def __init__(self):
+    self.camp_supplies = 0
+    self.short_rests = 2
+    self.long_rests = 0
+
+def take_long_rest(self): 
+    if self.camp_supplies >= 40:
+        self.long_rests += 1
         self.short_rests = 2
-        self.long_rests = 0
+        self.camp_supplies -= 40
+        print("You take a Long Rest. All short rests are replenished.")
+    else:
+        print("You don't have enough Camp Supplies for a Long Rest. You need at least 40.")
 
-    def take_long_rest(self): 
-        if self.camp_supplies >= 40:
-            self.long_rests += 1
-            self.short_rests = 2
-            self.camp_supplies -= 40
-            print("You take a Long Rest. All short rests are replenished.")
-        else:
-            print("You don't have enough Camp Supplies for a Long Rest. You need at least 40.")
+def take_short_rest(self):
+    if self.short_rests > 0:
+        self.short_rests -= 1
+        print("You take a Short Rest.")
+    else:
+        print("You've run out of Short Rests. Consider a Long Rest.")
 
-    def take_short_rest(self):
-        if self.short_rests > 0:
-            self.short_rests -= 1
-            print("You take a Short Rest.")
-        else:
-            print("You've run out of Short Rests. Consider a Long Rest.")
+def forage_supplies(self):
+    roll = random.randint(1, 20)
+    if roll >= 10:
+        supplies_found = random.randint(1, 10)
+        self.camp_supplies += supplies_found
+        print(f"You successfully foraged {supplies_found} Camp Supplies.")
+    else:
+        print("You couldn't find any additional Camp Supplies while foraging.")
 
-    def forage_supplies(self):
-        roll = random.randint(1, 20)
-        if roll >= 10:
-            supplies_found = random.randint(1, 10)
-            self.camp_supplies += supplies_found
-            print(f"You successfully foraged {supplies_found} Camp Supplies.")
-        else:
-            print("You couldn't find any additional Camp Supplies while foraging.")
-
-    def show_status(self):
-        print(f"Camp Supplies: {self.camp_supplies}")
-        print(f"Short Rests left: {self.short_rests}")
-        print(f"Long Rests taken: {self.long_rests}")
+def show_status(self):
+    print(f"Camp Supplies: {self.camp_supplies}")
+    print(f"Short Rests left: {self.short_rests}")
+    print(f"Long Rests taken: {self.long_rests}")
 
 def main():
     party = Party()
