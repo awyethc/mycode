@@ -1,7 +1,7 @@
 #!/usr/env python3
 import random
 
-import random
+"""This code is broken, it doesn't forage properly"""
 
 # Define the possible environments
 environments = ["forest", "island", "plains", "swamp", "mountain"]
