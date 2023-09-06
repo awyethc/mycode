@@ -63,7 +63,7 @@ class Party:
             print("\nYou've run out of Short Rests. Consider a Long Rest.")
 
     def forage_supplies(self):
-        """Try to forage for supplies in the current environment"""
+        """Try to forage for supplies in the current environment and weather conditions"""
         roll = random.randint(1, 20)
         if roll >= 10:
             supplies_found = self.calculate_forage_amount()
@@ -74,14 +74,77 @@ class Party:
 
     def calculate_forage_amount(self):
         """Calculate the amount of supplies to forage based on the environment."""
-        # Modify this logic based on your specific weather and biome factors
-        # For this example, we'll use a simple random amount between 1 and 10.
-        return random.randint(1, 10)
+        roll = random.randint(1, 20)
+        environment_modifiers = {
+            "Sunny": random.randint(1, 10),  # Random modifier between 1 and 10
+            "Windy": random.randint(1, 4),   # Random modifier between 1 and 4
+            "Misty": random.randint(1, 6),   # Random modifier between 1 and 6
+            "Blizzard": -random.randint(1, 10),  # Random negative modifier between 1 and 10
+            "Dusty": -random.randint(1, 6),  # Random negative modifier between 1 and 6
+            "Light Rain": random.randint(1, 6),  # Random modifier between 1 and 6
+            "Heavy Rain": -random.randint(1, 4),  # Random negative modifier between 1 and 4
+            "Snowy": -random.randint(1, 6),  # Random negative modifier between 1 and 6
+            "Overcast": random.randint(1, 8),  # Random modifier between 1 and 8
+            "Partly Cloudy": random.randint(1, 6),  # Random modifier between 1 and 6
+            "Stormy": -random.randint(1, 8),  # Random negative modifier between 1 and 8
+            "Foggy": -random.randint(1, 6)  # Random negative modifier between 1 and 6
+        }
+        biome_modifiers = {
+            "Forest": 2,
+            "Plains": 1,
+            "Island": 0,
+            "Mountain": -1,
+            "Swamp": -2,
+            "Desert": -3,
+            "Tundra": -3,
+            "Cave": -4,
+            "Coastal": 1,
+            "Jungle": 1
+        }
+    weather_modifier = environment_modifiers.get(self.weather, 0)
+
+    biome_modifier = biome_modifiers.get(self.biome, 0)
+    total_modifier = weather_modifier + biome_modifier
+
+    if roll + total_modifier >= 10:
+        supplies_found = random.randint(1, 10)
+        print(f"\nYou successfully foraged {supplies_found} Camp Supplies.")
+        return supplies_found
+    else:
+        print(f"\nYou couldn't find any additional Camp Supplies while foraging.")
+        return 0
+
 
     def report_environment(self):
-        """Report the current environment (weather and biome)."""
-        self.weather = random.choice(["Sunny", "Cloudy", "Rainy", "Stormy", "Foggy", "Snowy"])
-        self.biome = random.choice(["Forest", "Plains", "Island", "Mountain", "Swamp"])
+        """Generate the current environment (weather and biome)."""
+        weather_options = [
+        "Sunny",
+        "Windy",
+        "Misty",
+        "Blizzard",
+        "Dusty",
+        "Light Rain",
+        "Heavy Rain",
+        "Snowy",
+        "Overcast",
+        "Partly Cloudy",
+        "Stormy",
+        "Foggy"
+    ]
+        biome_options = [
+        "Forest",
+        "Plains",
+        "Island",
+        "Mountain",
+        "Swamp",
+        "Desert",
+        "Tundra",
+        "Cave",
+        "Coastal",
+        "Jungle"  
+    ]
+        self.weather = random.choice(weather_options)
+        self.biome = random.choice(biome_options)
 
     def show_status(self):
         """Let the user check the party resources and environment."""
