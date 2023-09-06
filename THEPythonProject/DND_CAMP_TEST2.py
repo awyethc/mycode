@@ -23,7 +23,7 @@ class Party:
     """Create a Party class that will hold attributes"""
     def __init__(self):
         self.camp_supplies = 80  # Start with 80 camp supplies
-        self.short_rests = 2
+        self.short_rests = 2 # Start with 2 Short Rests Available
         self.weather = "" # Starting as an empty string to be filled later
         self.biome = "" # Starting as an empty string to be filled later
 
@@ -32,18 +32,33 @@ class Party:
         if self.camp_supplies >= 40:
             self.short_rests = 2  # Reset short rest counter
             self.camp_supplies -= 40  # Consume 40 camp supplies
-            self.report_environment()  # Report the environment after the long rest
+            self.report_environment()  # Generate new environment after the long rest
             print("\nYou consume 40 Camp Supplies and take a Long Rest.")
             print("\nAll short rests have been replenished.")
+            print("\nThe Party packs up and moves on to the next area...") # hint hint, check status
         else:
             print("\nYou don't have enough Camp Supplies for a Long Rest.")
+            print("\nYou will need to forage for more.")
 
     def take_short_rest(self):
-        """Take a short rest if the party has any left"""
+        """Take a short rest if the party has any left
+            and report any changes in the weather"""
+        old_weather = self.weather  # Store the current weather before the short rest
         if self.short_rests > 0:
             self.short_rests -= 1
-            print("\nYou take a Short Rest.")
-            print(f"You have {self.short_rests} Short Rests remaining.")
+            self.report_environment()  # Report the environment after a short rest
+            new_weather = self.weather  # Get the new weather after the short rest
+
+            time.sleep(0.5)
+            if new_weather != old_weather:
+                print("\nYou take a Short Rest.")
+                print(f"The weather has become {new_weather}.")
+            else:
+                print("\nYou take a Short Rest.")
+                print(f"The weather remains {new_weather}.")
+
+            time.sleep(1)
+            print(f"\nYou have {self.short_rests} Short Rests remaining.")
         else:
             print("\nYou've run out of Short Rests. Consider a Long Rest.")
 
@@ -82,21 +97,23 @@ def main():
     party.report_environment() # The first time the report environment function is called
 
     # Initial message to the user on first start up
-    print("Welcome to the Rest Mechanics Simulator!\n")
-    print(f"You are in a {party.biome}, where the weather is currently {party.weather}.\n")
+    print("\nWelcome to the Rest Mechanics Simulator!\n")
+    print(f"Your party is located in a {party.biome} biome, and the weather is currently {party.weather}.\n")
     print(f"You have {party.camp_supplies} Camp Supplies remaining.")
     time.sleep(1)
 
     while True:
+        time.sleep(1)
         print("\nChoose your next course of action:")
-        print("1. Take a Long Rest")
+        time.sleep(1)
+        print("1. Take a Long Rest (costs 40 Camp Supplies)")
         print("2. Take a Short Rest")
         print("3. Forage for Supplies")
         print("4. Show Status")
         print("5. Exit")
 
         choice = input("\nEnter your choice (1/2/3/4/5): ")
-        time.sleep(0.5)
+        time.sleep(0.25)
 
         if choice == '1':
             party.take_long_rest()
@@ -108,7 +125,9 @@ def main():
             party.show_status()
             time.sleep(2)
         elif choice == '5':
-            print("\nThank you for playing, this sim will exit in 3 seconds.")
+            print("\nThank you for traveling with us!\n")
+            print("The Rest Mechanics simulator will exit in 3 seconds.\n")
+            print("Have a wonderful day!")
             time.sleep(3)
             break
         else:
