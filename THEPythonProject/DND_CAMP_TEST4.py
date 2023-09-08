@@ -181,9 +181,9 @@ def main():
         elif choice == '3':
             party.calculate_forage_amount()  # Call the calculate_forage_amount method
         elif choice == '4':
-            party.report_environment()
+            party.report_environment() # Call the report_environment method for status info
         elif choice == '5':
-            print("\nThank you for traveling with us!\n")
+            print("\nThank you for traveling with us!\n") # Begin to gracefully exit the simulator
             print("The Rest Mechanics simulator will exit in 3 seconds.\n")
             print("Have a wonderful day!")
             time.sleep(3)
