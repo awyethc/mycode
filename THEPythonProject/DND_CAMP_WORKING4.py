@@ -183,7 +183,9 @@ def main():
         elif choice == '4':
             party.report_environment()
         elif choice == '5':
-            print("\nThank you for playing, this sim will exit in 3 seconds.\n")
+            print("\nThank you for traveling with us!\n")
+            print("The Rest Mechanics simulator will exit in 3 seconds.\n")
+            print("Have a wonderful day!")
             time.sleep(3)
             break
         else:
